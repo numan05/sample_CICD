@@ -8,11 +8,12 @@ pipeline{
             }
 
         }
-        stage('Unit test'){
-            steps{
-                sh 'mvn test'
+        stage("test PythonEnv") {
+            withPythonEnv('python3') {
+                sh 'pip install pytest'
+                sh 'pytest mytest.py'
             }
-
+        }
         }
     }
 }
