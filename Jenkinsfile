@@ -9,7 +9,9 @@ pipeline{
 
         }
         stage("test PythonEnv") {
-            bat "pytest mytest.py"
+            steps{
+                bat "pytest mytest.py"
             }
         }
     }
+}
