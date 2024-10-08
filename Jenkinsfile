@@ -9,11 +9,7 @@ pipeline{
 
         }
         stage("test PythonEnv") {
-            withPythonEnv('python3') {
-                sh 'pip install pytest'
-                sh 'pytest mytest.py'
+            bat "pytest mytest.py"
             }
         }
-        }
     }
-}
