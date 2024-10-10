@@ -18,7 +18,10 @@ pipeline {
                 echo "Building.."
                 sh '''
                     #pip install -r requirements.txt
+                    pip install coverage
+                    pip install pytest
                     echo "Build block is executed"
+                    
                 '''
             }
         }
@@ -37,6 +40,9 @@ pipeline {
                 withSonarQubeEnv(installationName: 'SonarQubeServer', credentialsId: 'sonar-api-key') {
                 sh '''
                 echo "Touching sonarqube"
+                coverage run -m pytest
+                coverage xml
+                sonar-scanner
                 '''
                 }
             }
