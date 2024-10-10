@@ -1,1 +1,1 @@
-camelcase
+fire==0.4.0
