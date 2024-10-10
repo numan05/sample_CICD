@@ -13,14 +13,6 @@ pipeline {
                 git branch: 'main', url: 'https://github.com/numan05/sample_CICD.git'
             }
         }
-        stage('CODE ANALYSIS') {
-            steps {
-                def scannerHome = tool 'SonarScanner';
-                withSonarQubeEnv() {
-                    sh "${scannerHome}/bin/sonar-scanner"
-                }
-            }
-        }
         stage('BUILD') {
             steps {
                 echo "Building.."
@@ -28,6 +20,14 @@ pipeline {
                 cd myapp
                 pip install -r requirements.txt
                 '''
+            }
+        }
+        stage('CODE ANALYSIS') {
+            steps {
+                def scannerHome = tool 'SonarScanner';
+                withSonarQubeEnv() {
+                    sh "${scannerHome}/bin/sonar-scanner"
+                }
             }
         }
         stage('TEST') {
