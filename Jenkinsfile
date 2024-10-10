@@ -17,9 +17,8 @@ pipeline {
             steps {
                 echo "Building.."
                 sh '''
-                #cd myapp
-                echo "inside sh"
-                #pip install -r requirements.txt
+                cd myapp
+                pip install -r requirements.txt
                 '''
             }
         }
