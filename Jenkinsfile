@@ -17,8 +17,7 @@ pipeline {
             steps {
                 echo "Building.."
                 sh '''
-                cd myapp
-                pip install -r requirements.txt
+                    pip install -r requirements.txt
                 '''
             }
         }
@@ -27,16 +26,8 @@ pipeline {
                 echo "Testing.."
                 sh '''
                 cd myapp
-                python3 randomnum.py
-                python3 randomnum.py --name=Numan
-                '''
-            }
-        }
-        stage('DELIVER') {
-            steps {
-                echo "Deliver.."
-                sh '''
-                echo "A shell command for delivering"
+                python3 hello_world.py
+                #python3 randomnum.py --name=Numan
                 '''
             }
         }
@@ -47,6 +38,14 @@ pipeline {
                 echo "Touching sonarqube"
                 '''
                 }
+            }
+        }
+        stage('DELIVER') {
+            steps {
+                echo "Deliver.."
+                sh '''
+                echo "A shell command for delivering"
+                '''
             }
         }
     }
