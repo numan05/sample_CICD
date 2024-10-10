@@ -28,6 +28,7 @@ pipeline {
                 sh '''
                 cd myapp
                 python3 randomnum.py
+                python3 randomnum.py --name=Numan
                 '''
             }
         }
