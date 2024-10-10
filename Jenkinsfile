@@ -33,7 +33,7 @@ pipeline {
         }
         stage('CODE ANALYSIS') {
             steps {
-                withSonarQubeEnv(credentialsId: 'sonar-api-key') {
+                withSonarQubeEnv(installationName: 'SonarQubeServer', credentialsId: 'sonar-api-key') {
                 sh '''
                 echo "Touching sonarqube"
                 '''
