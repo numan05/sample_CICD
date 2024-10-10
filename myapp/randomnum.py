@@ -1,1 +1,5 @@
-print(random.randint(0,10))
+c = camelcase.CamelCase()
+
+txt = "hello world"
+
+print(c.hump(txt))
