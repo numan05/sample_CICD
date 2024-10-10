@@ -18,6 +18,7 @@ pipeline {
                 echo "Building.."
                 sh '''
                     #pip install -r requirements.txt
+                    dir('/home/jenkins/.local/bin/')
                     pip install coverage
                     pip install pytest
                     coverage run -m pytest
