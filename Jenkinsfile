@@ -26,7 +26,7 @@ pipeline {
             steps {
                 echo "Testing.."
                 sh '''
-                cd myapp
+                #cd myapp
                 python3 hello_world.py
                 #python3 randomnum.py --name=Numan
                 '''
