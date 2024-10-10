@@ -20,6 +20,8 @@ pipeline {
                     #pip install -r requirements.txt
                     pip install coverage
                     pip install pytest
+                    coverage run -m pytest
+                    coverage xml #> /home/jenkins/workspace/quality/cover
                     echo "Build block is executed"
                     
                 '''
@@ -40,8 +42,6 @@ pipeline {
                 withSonarQubeEnv(installationName: 'SonarQubeServer', credentialsId: 'sonar-api-key') {
                 sh '''
                 echo "Touching sonarqube"
-                coverage run -m pytest
-                coverage xml
                 sonar-scanner
                 '''
                 }
