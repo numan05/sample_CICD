@@ -22,15 +22,6 @@ pipeline {
                 '''
             }
         }
-        stage('CODE ANALYSIS') {
-            steps {
-                script{
-                def scannerHome = tool 'SonarScanner';
-                withSonarQubeEnv() {
-                    sh "${scannerHome}/bin/sonar-scanner"
-                }}
-            }
-        }
         stage('TEST') {
             steps {
                 echo "Testing.."
@@ -47,6 +38,15 @@ pipeline {
                 sh '''
                 echo "A shell command for delivering"
                 '''
+            }
+        }
+        stage('CODE ANALYSIS') {
+            steps {
+                withSonarQubeEnv(credentialsId: 'sonar-api-key') {
+                sh '''
+                echo "Touching sonarqube"
+                '''
+                }
             }
         }
     }
