@@ -17,7 +17,8 @@ pipeline {
             steps {
                 echo "Building.."
                 sh '''
-                echo "This is a shell command for building"
+                cd myapp
+                pip install -r requirements.txt
                 '''
             }
         }
@@ -25,7 +26,8 @@ pipeline {
             steps {
                 echo "Testing.."
                 sh '''
-                echo "A shell command for Testing"
+                cd myapp
+                python3 randomnum.py
                 '''
             }
         }
