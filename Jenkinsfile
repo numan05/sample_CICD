@@ -19,13 +19,13 @@ pipeline {
                 sh '''
                     #pip install -r requirements.txt
                     #dir('/home/jenkins/.local/bin/')
-                    whoami
-                    pwd
+                    #whoami
+                    #pwd
                     #pip install coverage
                     #pip install pytest
                     #coverage run -m pytest
                     #coverage xml #> /home/jenkins/workspace/quality/cover
-                    echo "Build block is executed"
+                    #echo "Build block is executed"
                 '''
             }
         }
