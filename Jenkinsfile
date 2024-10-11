@@ -19,8 +19,7 @@ pipeline {
                 script {
                     sh '''
                     #pip install -r requirements.txt
-                    #dir('/home/jenkins/.local/bin/')
-                    whoami
+                    dir('/home/jenkins/.local/bin/')
                     pwd
                     #pip install coverage
                     #pip install pytest
@@ -43,11 +42,13 @@ pipeline {
         }
         stage('CODE ANALYSIS') {
             steps {
-                withSonarQubeEnv(installationName: 'SonarQubeServer', credentialsId: 'sonar-api-key') {
-                sh '''
-                echo "Touching sonarqube"
-                sonar-scanner
-                '''
+                script {
+                    withSonarQubeEnv(installationName: 'SonarQubeServer', credentialsId: 'sonar-api-key') {
+                    sh '''
+                    echo "Touching sonarqube"
+                    sonar-scanner
+                    '''
+                }
                 }
             }
         }
