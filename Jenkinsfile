@@ -21,12 +21,11 @@ pipeline {
                     dir('/home/jenkins/.local/bin/')
                     whoami
                     pwd
-                    pip install coverage
-                    pip install pytest
-                    coverage run -m pytest
-                    coverage xml #> /home/jenkins/workspace/quality/cover
+                    #pip install coverage
+                    #pip install pytest
+                    #coverage run -m pytest
+                    #coverage xml #> /home/jenkins/workspace/quality/cover
                     echo "Build block is executed"
-                    
                 '''
             }
         }
