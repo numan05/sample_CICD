@@ -18,7 +18,7 @@ pipeline {
                 echo "Building.."
                 sh '''
                     #pip install -r requirements.txt
-                    dir('/home/jenkins/.local/bin/')
+                    #dir('/home/jenkins/.local/bin/')
                     whoami
                     pwd
                     #pip install coverage
