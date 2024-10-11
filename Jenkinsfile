@@ -19,7 +19,7 @@ pipeline {
                 script {
                     sh '''
                     #pip install -r requirements.txt
-                    dir('/home/jenkins/.local/bin/')
+                    #dir('/home/jenkins/.local/bin/')
                     pwd
                     #pip install coverage
                     #pip install pytest
