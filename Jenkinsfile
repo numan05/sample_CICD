@@ -17,15 +17,7 @@ pipeline {
             steps {
                 echo "Building.."
                 sh '''
-                    #pip install -r requirements.txt
-                    #dir('/home/jenkins/.local/bin/')
-                    #whoami
-                    #pwd
-                    #pip install coverage
-                    #pip install pytest
-                    #coverage run -m pytest
-                    #coverage xml #> /home/jenkins/workspace/quality/cover
-                    #echo "Build block is executed"
+                echo "This is a shell command for building"
                 '''
             }
         }
@@ -33,20 +25,8 @@ pipeline {
             steps {
                 echo "Testing.."
                 sh '''
-                #cd myapp
-                python3 hello_world.py
-                #python3 randomnum.py --name=Numan
+                echo "A shell command for Testing"
                 '''
-            }
-        }
-        stage('CODE ANALYSIS') {
-            steps {
-                withSonarQubeEnv(installationName: 'SonarQubeServer', credentialsId: 'sonar-api-key') {
-                sh '''
-                echo "Touching sonarqube"
-                sonar-scanner
-                '''
-                }
             }
         }
         stage('DELIVER') {
