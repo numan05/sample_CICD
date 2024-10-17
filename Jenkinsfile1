@@ -1,0 +1,45 @@
+pipeline {
+    agent any
+
+    tools {
+        maven 'Maven 3.6.3' // Adjust this to your Maven installation name
+    }
+
+    environment {
+        SONARQUBE_URL = 'http://localhost:9000/' // Replace with your SonarQube server URL
+        SONARQUBE_CREDENTIALS = 'sonar-api-key' // Replace with your SonarQube token ID configured in Jenkins
+    }
+
+    stages {
+        stage('Checkout') {
+            steps {
+                checkout scm
+            }
+        }
+
+        stage('Build') {
+            steps {
+                sh 'mvn clean package'
+            }
+        }
+
+        stage('SonarQube Analysis') {
+            steps {
+                withSonarQubeEnv('SonarQubeServer') { // 'SonarQube' is the name of the SonarQube server configured in Jenkins
+                    sh 'mvn sonar:sonar -Dsonar.projectKey=your-project-key -Dsonar.host.url=$SONARQUBE_URL -Dsonar.login=$SONARQUBE_CREDENTIALS'
+                }
+            }
+        }
+
+        stage('Quality Gate') {
+            steps {
+                script {
+                    def qg = waitForQualityGate()
+                    if (qg.status != 'OK') {
+                        error "Pipeline aborted due to quality gate failure: ${qg.status}"
+                    }
+                }
+            }
+        }
+    }
+}
