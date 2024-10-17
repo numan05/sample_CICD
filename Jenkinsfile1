@@ -1,8 +1,7 @@
 pipeline {
     agent any
-
     tools {
-        maven 'Maven 3.6.3' // Adjust this to your Maven installation name
+        maven 'Apache Maven 3.6.3' // Adjust this to your Maven installation name
     }
 
     environment {
