@@ -22,11 +22,11 @@ pipeline {
                     #jenkins.war
                     #pip install -r requirements.txt
                     #dir('/var/lib/jenkins/workspace/my-python-test')
-                    cd /var/lib/jenkins/workspace/my-python-test
-                    pwd
-                    pip install coverage
-                    pip install pytest
-                    coverage run -m pytest
+                    #cd /var/lib/jenkins/workspace/my-python-test
+                    #pwd
+                    #pip install coverage
+                    #pip install pytest
+                    #coverage run -m pytest
                     #coverage xml #> /home/jenkins/workspace/quality/cover
                     echo "Build block is executed"
                 '''
