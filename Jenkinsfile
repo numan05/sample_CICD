@@ -4,11 +4,6 @@ pipeline {
         pollSCM '* * * * *'
     }
     stages {
-        stage('GIT CHECK') {
-            steps {
-                git branch: 'main', url: 'https://github.com/numan05/sample_CICD.git'
-            }
-        }
         stage('BUILD') {
             steps {
                 echo "Building.."
