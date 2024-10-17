@@ -9,11 +9,6 @@ pipeline {
         pollSCM '* * * * *'
     }
     stages {
-        stage('GIT CHECK') {
-            steps {
-                git branch: 'main', url: 'https://github.com/numan05/sample_CICD.git'
-            }
-        }
         stage('BUILD') {
             steps {
                 echo "Building.."
@@ -24,7 +19,7 @@ pipeline {
                     #jenkins.war
                     #pip install -r requirements.txt
                     #dir('/home/jenkins/.local/bin/')
-                    #pip install coverage
+                    pip install coverage
                     #pip install pytest
                     #coverage run -m pytest
                     #coverage xml #> /home/jenkins/workspace/quality/cover
