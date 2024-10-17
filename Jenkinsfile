@@ -5,9 +5,7 @@ pipeline {
         }
         
     }
-    environment {
-        SHELL = '/bin/bash'
-    }
+    #environment {    SHELL = '/bin/bash' }
     triggers {
         pollSCM '* * * * *'
     }
