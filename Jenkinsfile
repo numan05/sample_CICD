@@ -3,6 +3,10 @@ pipeline {
         node {
             label 'docker-agent-python'
         }
+        
+    }
+    environment {
+        SHELL = '/bin/bash'
     }
     triggers {
         pollSCM '* * * * *'
@@ -18,6 +22,8 @@ pipeline {
                 echo "Building.."
                 script {
                     sh '''
+                    java -Dorg.jenkinsci.plugins.durabletask.BourneShellScript.LAUNCH_DIAGNOSTICS=true -jar
+                    jenkins.war
                     #pip install -r requirements.txt
                     #dir('/home/jenkins/.local/bin/')
                     pwd
