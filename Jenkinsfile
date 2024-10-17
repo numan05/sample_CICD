@@ -21,7 +21,9 @@ pipeline {
                     #java -Dorg.jenkinsci.plugins.durabletask.BourneShellScript.LAUNCH_DIAGNOSTICS=true -jar
                     #jenkins.war
                     #pip install -r requirements.txt
-                    #dir('/home/jenkins/.local/bin/')
+                    #dir('/var/lib/jenkins/workspace/my-python-test')
+                    cd /var/lib/jenkins/workspace/my-python-test
+                    pwd
                     pip install coverage
                     pip install pytest
                     coverage run -m pytest
