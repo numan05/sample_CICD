@@ -8,8 +8,7 @@ pipeline {
         maven 'Maven 3.6.3' // Use the name of your Maven installation
     }
     environment {
-        PATH = "${env.PATH}:/home/jenkins/.local/bin"
-        PATH = "${env.PATH}:/path/to/maven/bin"
+        PATH = "${env.PATH}:/home/jenkins/.local/bin:/path/to/maven/bin"
     }
     triggers {
         pollSCM '* * * * *'
