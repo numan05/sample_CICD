@@ -5,6 +5,9 @@ pipeline {
         }
         
     }
+    environment {
+        PATH = "${env.PATH}:/home/jenkins/.local/bin"
+    }
     triggers {
         pollSCM '* * * * *'
     }
