@@ -48,8 +48,8 @@ pipeline {
                 script {
                     withSonarQubeEnv(installationName: 'SonarQubeServer', credentialsId: 'sonar-api-key') {
                     sh '''
-                    echo "Touching sonarqube"
-                    sonar-scanner
+                    echo "Touching sonarqube but not able to run the analysis yet!"
+                    #sonar-scanner
                     '''
                 }
                 }
