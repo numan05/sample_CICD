@@ -5,7 +5,7 @@ pipeline {
         }
     }
     environment {
-        PATH = "${env.PATH}:/home/jenkins/.local/bin:/path/to/maven/bin"
+        PATH = "${env.PATH}:/home/jenkins/.local/bin:/usr/share/maven/bin"
     }
     triggers {
         pollSCM '* * * * *'
