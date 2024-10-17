@@ -49,9 +49,18 @@ pipeline {
                     withSonarQubeEnv(installationName: 'SonarQubeServer', credentialsId: 'sonar-api-key') {
                     sh '''
                     echo "Touching sonarqube but not able to run the analysis yet!"
+                    mvn clean package sonar:sonar
                     #sonar-scanner
                     '''
                 }
+                }
+            }
+        }
+        stage("Quality Gate"){
+          timeout(time: 1, unit: 'HOURS') {
+              def qg = waitForQualityGate()
+              if (qg.status != 'OK') {
+                  error "Pipeline aborted due to quality gate failure: ${qg.status}"
                 }
             }
         }
