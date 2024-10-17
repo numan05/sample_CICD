@@ -21,7 +21,7 @@ pipeline {
                     #pip install -r requirements.txt
                     #dir('/home/jenkins/.local/bin/')
                     pwd
-                    #pip install coverage
+                    pip install coverage
                     #pip install pytest
                     #coverage run -m pytest
                     #coverage xml #> /home/jenkins/workspace/quality/cover
