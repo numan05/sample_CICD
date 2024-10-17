@@ -44,7 +44,7 @@ pipeline {
                     withSonarQubeEnv(installationName: 'SonarQubeServer', credentialsId: 'sonar-api-key') {
                     sh '''
                     echo "Touching sonarqube but not able to run the analysis yet!"
-                    mvn clean package sonar:sonar
+                    #mvn clean package sonar:sonar
                     #sonar-scanner
                     '''
                     }
