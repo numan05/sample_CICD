@@ -1,9 +1,5 @@
 pipeline {
-    agent {
-        node {
-            label 'docker-agent-python'
-        }
-    }
+    agent any
     environment {
         PATH = "${env.PATH}:/home/jenkins/.local/bin:/usr/share/maven/bin"
     }
