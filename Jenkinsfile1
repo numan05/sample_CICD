@@ -1,8 +1,5 @@
 pipeline {
     agent any
-    tools {
-        maven 'Apache Maven 3.6.3' // Adjust this to your Maven installation name
-    }
 
     environment {
         SONARQUBE_URL = 'http://localhost:9000/' // Replace with your SonarQube server URL
@@ -16,16 +13,28 @@ pipeline {
             }
         }
 
-        stage('Build') {
+        stage('Install Dependencies') {
             steps {
-                sh 'mvn clean package'
+                sh 'pip install -r pytest'
+            }
+        }
+
+        stage('Run Tests') {
+            steps {
+                sh 'pytest'
             }
         }
 
         stage('SonarQube Analysis') {
             steps {
                 withSonarQubeEnv('SonarQubeServer') { // 'SonarQube' is the name of the SonarQube server configured in Jenkins
-                    sh 'mvn sonar:sonar -Dsonar.projectKey=your-project-key -Dsonar.host.url=$SONARQUBE_URL -Dsonar.login=$SONARQUBE_CREDENTIALS'
+                    sh '''
+                        sonar-scanner \
+                        -Dsonar.projectKey=your-project-key \
+                        -Dsonar.sources=. \
+                        -Dsonar.host.url=$SONARQUBE_URL \
+                        -Dsonar.login=$SONARQUBE_CREDENTIALS
+                    '''
                 }
             }
         }
