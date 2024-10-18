@@ -21,7 +21,7 @@ pipeline {
 
         stage('Run Tests') {
             steps {
-                sh 'pytest hello_world.py'
+                sh 'python -m pytest hello_world.py'
             }
         }
 
