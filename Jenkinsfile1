@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment {
-        PATH = "${env.PATH}:/home/jenkins/.local/bin:/usr/share/maven/bin"
+        PATH = "${env.PATH}:/opt/sonarqube/bin"
         SONARQUBE_URL = 'http://localhost:9000/' // Replace with your SonarQube server URL
         SONARQUBE_CREDENTIALS = 'sonar-api-key' // Replace with your SonarQube token ID configured in Jenkins
     }
@@ -30,8 +30,8 @@ pipeline {
                 withSonarQubeEnv('SonarQubeServer') { // 'SonarQube' is the name of the SonarQube server configured in Jenkins
                     sh '''
                         sonar-scanner \
-                        -Dsonar.projectKey=your-project-key \
-                        -Dsonar.sources=. \
+                        -Dsonar.projectKey=SonarQubeServer \
+                        -Dsonar.sources= .\
                         -Dsonar.host.url=$SONARQUBE_URL \
                         -Dsonar.login=$SONARQUBE_CREDENTIALS
                     '''
