@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment {
-        PATH = "${env.PATH}:/opt/sonarqube/bin"
+        PATH = "${env.PATH}:/opt/sonarqube/bin:/opt/sonar-scanner-6.2.1.4610-linux-x64/bin"
         SONARQUBE_URL = 'http://localhost:9000/' // Replace with your SonarQube server URL
         SONARQUBE_CREDENTIALS = 'sonar-api-key' // Replace with your SonarQube token ID configured in Jenkins
     }
