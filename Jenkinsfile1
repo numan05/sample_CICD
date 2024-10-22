@@ -2,10 +2,7 @@ pipeline {
     agent any
     environment {
         PATH = "${env.PATH}:/opt/sonarqube/bin:/opt/sonar-scanner-6.2.1.4610-linux-x64/bin"
-        SONARQUBE_URL = 'http://localhost:9000/' // Replace with your SonarQube server URL
-        SONARQUBE_CREDENTIALS = 'sonar-api-key' // Replace with your SonarQube token ID configured in Jenkins
     }
-
     stages {
         stage('Checkout') {
             steps {
@@ -29,13 +26,19 @@ pipeline {
             steps {
                 withSonarQubeEnv('SonarQubeServer') { // 'SonarQube' is the name of the SonarQube server configured in Jenkins
                     sh '''
+                        #sonar-scanner \
+                        #-Dsonar.projectKey=SonarQubeServer \
+                        #-Dsonar.sources=.\
+                        #-Dsonar.host.url=$SONARQUBE_URL \
+                        #-Dsonar.login=$SONARQUBE_CREDENTIALS
+                        #-Dsonar.password=jenkins-auth
                         sonar-scanner \
-                        -Dsonar.projectKey=SonarQubeServer \
-                        -Dsonar.sources=.\
-                        -Dsonar.host.url=$SONARQUBE_URL \
-                        -Dsonar.login=$SONARQUBE_CREDENTIALS
-                        -Dsonar.password=jenkins-auth
-                    '''
+                            -Dsonar.projectKey=SonarQubeManual1 \
+                            -Dsonar.sources=. \
+                            -Dsonar.host.url=http://localhost:9000 \
+                            -Dsonar.login=sqp_1e99ac8064a6e2ad553b4c4d0546840e0fc4cb1a
+
+                        '''
                 }
             }
         }
