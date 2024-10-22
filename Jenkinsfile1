@@ -24,13 +24,13 @@ pipeline {
 
         stage('SonarQube Analysis') {
             steps {
-                withSonarQubeEnv('SonarQubeManual1') { // 'SonarQube' is the name of the SonarQube server configured in Jenkins
+                withSonarQubeEnv('SonarQubeManual1') {
                     sh '''
                         sonar-scanner \
                             -Dsonar.projectKey=SonarQubeManual1 \
                             -Dsonar.sources=. \
                             -Dsonar.host.url=http://localhost:9000 \
-                            -Dsonar.login=Analyze "SonarQubeManual1"
+                            -Dsonar.login=sqp_1e99ac8064a6e2ad553b4c4d0546840e0fc4cb1a
                         '''
                 }
             }
