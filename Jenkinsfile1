@@ -30,7 +30,7 @@ pipeline {
                             -Dsonar.projectKey=SonarQubeManual1 \
                             -Dsonar.sources=. \
                             -Dsonar.host.url=http://localhost:9000 \
-                            -Dsonar.login=sqp_1e99ac8064a6e2ad553b4c4d0546840e0fc4cb1a
+                            -Dsonar.login=Analyze "SonarQubeManual1"
                         '''
                 }
             }
