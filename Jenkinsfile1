@@ -24,7 +24,7 @@ pipeline {
 
         stage('SonarQube Analysis') {
             steps {
-                withSonarQubeEnv('SonarQubeServer') { // 'SonarQube' is the name of the SonarQube server configured in Jenkins
+                withSonarQubeEnv('SonarQubeManual1') { // 'SonarQube' is the name of the SonarQube server configured in Jenkins
                     sh '''
                         sonar-scanner \
                             -Dsonar.projectKey=SonarQubeManual1 \
