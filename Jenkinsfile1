@@ -24,7 +24,7 @@ pipeline {
 
         stage('SonarQube Analysis') {
             steps {
-                withSonarQubeEnv('SonarQubeManual1') {
+                withSonarQubeEnv(installationName: 'SonarQubeManual1', credentialsId: 'sonar-api-key') {
                     sh '''
                         sonar-scanner \
                             -Dsonar.projectKey=SonarQubeManual1 \
@@ -38,9 +38,11 @@ pipeline {
         stage('Quality Gate') {
             steps {
                 script {
-                    def qg = waitForQualityGate()
-                    if (qg.status != 'OK') {
-                        error "Pipeline aborted due to quality gate failure: ${qg.status}"
+                    withSonarQubeEnv(installationName: 'SonarQubeManual1', credentialsId: 'sonar-api-key') {
+                        def qg = waitForQualityGate()
+                        if (qg.status != 'OK') {
+                            error "Pipeline aborted due to quality gate failure: ${qg.status}"
+                        }
                     }
                 }
             }
