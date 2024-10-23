@@ -39,7 +39,7 @@ pipeline {
             steps {
                 script {
                     withSonarQubeEnv(installationName:'SonarQubeManual1', credentialsId: 'sonar-api') {
-                        def maxRetries = 30
+                        def maxRetries = 2
                         def retryCount = 0
                         def waitTime = 60 // seconds
                         def qgStatus = 'IN_PROGRESS'
