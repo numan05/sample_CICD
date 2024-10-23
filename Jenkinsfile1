@@ -41,6 +41,7 @@ pipeline {
                     withSonarQubeEnv(installationName: 'SonarQubeManual1', credentialsId: 'sonar-api') {
                         echo "Enterted the SonarQubeEnv"
                         def qg = waitForQualityGate()
+                        echo "waitForQualityGate is executed"
                         if (qg.status != 'OK') {
                             error "Pipeline aborted due to quality gate failure: ${qg.status}"
                         }
