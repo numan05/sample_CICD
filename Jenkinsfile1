@@ -45,6 +45,7 @@ pipeline {
                         def qgStatus = 'IN_PROGRESS'
 
                         while (qgStatus == 'IN_PROGRESS' && retryCount < maxRetries) {
+                            echo "Hello"
                             def qg = waitForQualityGate()
                             qgStatus = qg.status
                             echo "Quality gate status: ${qgStatus}"
