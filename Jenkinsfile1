@@ -38,7 +38,7 @@ pipeline {
         stage('Quality Gate') {
             steps {
                 script {
-                    withSonarQubeEnv('SonarQubeManual1', credentialsId: 'sonar-api') {
+                    withSonarQubeEnv(installationName:'SonarQubeManual1', credentialsId: 'sonar-api') {
                         def maxRetries = 30
                         def retryCount = 0
                         def waitTime = 60 // seconds
