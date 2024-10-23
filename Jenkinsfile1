@@ -38,11 +38,32 @@ pipeline {
         stage('Quality Gate') {
             steps {
                 script {
-                    withSonarQubeEnv(installationName: 'SonarQubeManual1', credentialsId: 'sonar-api') {
-                        def qg = waitForQualityGate()
-                        if (qg.status != 'OK') {
-                            error "Pipeline aborted due to quality gate failure: ${qg.status}"
+                    withSonarQubeEnv('SonarQubeServer', credentialsId: 'sonar-api-key') {
+                        def maxRetries = 30
+                        def retryCount = 0
+                        def waitTime = 60 // seconds
+                        def qgStatus = 'IN_PROGRESS'
+
+                        while (qgStatus == 'IN_PROGRESS' && retryCount < maxRetries) {
+                            def qg = waitForQualityGate()
+                            qgStatus = qg.status
+                            echo "Quality gate status: ${qgStatus}"
+                            if (qgStatus == 'OK') {
+                                echo "Quality gate passed."
+                            } else if (qgStatus == 'ERROR') {
+                                error "Pipeline aborted due to quality gate failure: ${qgStatus}"
+                            } else {
+                                retryCount++
+                                echo "Quality gate status: ${qgStatus}. Retrying in ${waitTime} seconds... (Attempt ${retryCount}/${maxRetries})"
+                                sleep(waitTime)
+                            }
                         }
+
+                        if (qgStatus == 'IN_PROGRESS') {
+                            error "Pipeline aborted due to quality gate check timeout."
+                        }
+                    }
+                }
                     }
                 }
             }
