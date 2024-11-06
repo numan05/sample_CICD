@@ -38,8 +38,9 @@ pipeline {
         stage('Quality Gate') {
             steps {
                 script {
-                    withSonarQubeEnv(installationName: 'SonarQubeGate') {
+                    withSonarQubeEnv(installationName: 'SonarQubeManual1', credentialsId: 'sonar-api') {
                         echo "Enterted the SonarQubeEnv"
+                        sleep(10)
                         def qg = waitForQualityGate()
                         echo "waitForQualityGate is executed"
                         if (qg.status != 'OK') {
